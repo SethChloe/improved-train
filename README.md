@@ -1,5 +1,5 @@
 # improved-train
-python应用基础学习笔记，记录一些有意思的代码。
+python学习笔记，记录一些有意思的代码。
 
 HandDrow.py可以生成手绘风格的图像。
 
