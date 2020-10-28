@@ -14,3 +14,5 @@ caljidian.py可以读取excel表格计算绩点。
 MINIST文件夹下的.py文件可以实现手写体识别。
 
 mypython文件夹下的notebook记录了一些关于数据分析的学习笔记。
+
+shumaguan.py使用turtle库绘制数码管。
