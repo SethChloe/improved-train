@@ -1,9 +1,9 @@
 from distutils.core import setup
 
 setup(
-    name         ='data-analysis',
-    version      ='2.0.1',
-    py_modules   =['data-analysis'],
+    name         ='dtsettings',
+    version      ='1.0.3',
+    py_modules   =['dtsettings'],
     author       ='long.ao',
     author_email ='islong.ao@outlook.com',
     description  ='This is my own data-analysis work-box.',
