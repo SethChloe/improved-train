@@ -6,16 +6,18 @@ import seaborn as sns
 import scipy
 from scipy import stats
 
-# 显示中文
+# 显示中文和标签
 def Chinese():
     plt.rcParams['font.family'] = ['sans-serif']
     plt.rcParams['font.sans-serif'] = ['SimHei']
     plt.rcParams['axes.unicode_minus']=False
+    plt.legend(loc='lower center', frameon=False, bbox_to_anchor=(0.5, -0.3))
 
 # 设置seaborn画图样式
 sns.set(style='whitegrid',palette="muted",color_codes=True)
 sns.despine(left=True,bottom=True)
 sns.set(color_codes=True)
+
 
 #一阶偏相关分析
 def partial_corr(x, y, partial=[]):
