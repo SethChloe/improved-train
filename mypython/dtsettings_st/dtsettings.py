@@ -11,6 +11,10 @@ def Chinese():
     plt.rcParams['font.family'] = ['sans-serif']
     plt.rcParams['font.sans-serif'] = ['SimHei']
     plt.rcParams['axes.unicode_minus']=False
+
+Chinese()
+
+def legend():
     plt.legend(loc='lower center', frameon=False, bbox_to_anchor=(0.5, -0.3))
 
 # 设置seaborn画图样式
