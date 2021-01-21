@@ -7,9 +7,10 @@ import scipy
 from scipy import stats
 
 # 显示中文
-plt.rcParams['font.family'] = ['sans-serif']
-plt.rcParams['font.sans-serif'] = ['SimHei']
-plt.rcParams['axes.unicode_minus']=False
+def Chinese():
+    plt.rcParams['font.family'] = ['sans-serif']
+    plt.rcParams['font.sans-serif'] = ['SimHei']
+    plt.rcParams['axes.unicode_minus']=False
 
 # 设置seaborn画图样式
 sns.set(style='whitegrid',palette="muted",color_codes=True)
