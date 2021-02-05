@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import scipy
 from scipy import stats
+from sklearn.preprocessing import scale
+from scipy.spatial.distance import mahalanobis
 
 # 显示中文和标签
 def Chinese():
@@ -102,3 +104,49 @@ def wilcoxon_signed_rank_test(samp, mu0=0):
     Z = (posW - n * (n + 1) / 4) / np.sqrt((n * (n + 1) * (2 * n + 1)) / 24)
     P = (1 - stats.norm.cdf(abs(Z))) * 2
     return Z, P
+
+
+#距离判别
+def getminindex(lis):
+    lis_copy = lis[:]
+    lis_copy.sort()
+    minvalue = lis_copy[0]
+    minindex = lis.index(minvalue)
+    return minindex
+
+def mahalanobis_discrim(x_test, x_train, train_label):
+    final_result = []
+    colname = x_train.columns
+    test_n = x_test.shape[0]
+    train_n = x_train.shape[0]
+    m = x_train.shape[1]
+    n = test_n + train_n
+    data_x = x_train.append(x_test)
+    data_x_scale = scale(data_x)
+    x_train_scale = DataFrame(data_x_scale[:train_n])
+    x_test_scale = DataFrame(data_x_scale[train_n:])
+    data_train = x_train_scale.join(train_label)
+    label_name = data_train.columns[-1]
+    miu = data_train.groupby(label_name).mean()
+    miu = np.array(miu)
+    print("类中心：")
+    print(DataFrame(miu))
+    print()
+    label = train_label.drop_duplicates()
+    label = label.iloc[:, 0]
+    label = list(label)
+    label_len = len(label)
+    x_test_array = np.array(x_test_scale)
+    x_train_array = np.array(x_train_scale)
+    data_x_scale_array = np.array(data_x_scale)
+    cov = np.cov(data_x_scale_array.T)
+    for i in range(n):
+        dist = []
+        for j in range(label_len):
+            d = float(mahalanobis(data_x_scale[i], miu[j], np.mat(cov).I))
+            dist.append(d)
+        min_dist_index = getminindex(dist)
+        result = label[min_dist_index]
+        final_result.append(result)
+    print("分类结果为：")
+    return final_result
